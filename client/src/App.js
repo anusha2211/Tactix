@@ -1,11 +1,21 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Board from "./pages/Board";
+import Settings from "./pages/Settings";
+import NotFound from "./pages/NotFound";
+
 function App() {
   return (
-    <div className="h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-indigo-600">Welcome to Tactix 🚀</h1>
-      <p className="mt-4 text-lg text-gray-700">
-        Your Agile sprint planning and task management platform.
-      </p>
-    </div>
+    <Router>
+      <div className="p-4">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/board/:id" element={<Board />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
