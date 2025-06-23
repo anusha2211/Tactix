@@ -1,20 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import Board from "./pages/Board";
-import Settings from "./pages/Settings";
-import NotFound from "./pages/NotFound";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import Board from './pages/Board';
+import Settings from './pages/Settings';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
     <Router>
-      <div className="p-4">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/board/:id" element={<Board />} />
-          <Route path="/settings" element={<Settings />} />
+      <Routes>
+        {/* All routes that share Sidebar & Layout */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="board" element={<Board />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+        </Route>
+      </Routes>
     </Router>
   );
 }
