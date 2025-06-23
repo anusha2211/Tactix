@@ -13,6 +13,10 @@ const taskSlice = createSlice({
         addTask(state, action) {
             state.tasks.push(action.payload);
         },
+        deleteTask(state, action) {
+            const idToDelete = action.payload;
+            state.tasks = state.tasks.filter(task => task.id !== idToDelete);
+        }
     },
 });
 
@@ -20,4 +24,4 @@ const taskSlice = createSlice({
 export default taskSlice.reducer;
 
 // Export actions for dispatching
-export const { addTask } = taskSlice.actions;
+export const { addTask, deleteTask } = taskSlice.actions;
