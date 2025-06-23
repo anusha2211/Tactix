@@ -16,6 +16,14 @@ const taskSlice = createSlice({
         deleteTask(state, action) {
             const idToDelete = action.payload;
             state.tasks = state.tasks.filter(task => task.id !== idToDelete);
+        },
+        editTask(state, action) {
+            const { id, title, status } = action.payload;
+            const existingTask = state.tasks.find((task) => task.id === id);
+            if (existingTask) {
+                existingTask.title = title;
+                existingTask.status = status;
+            }
         }
     },
 });
@@ -24,4 +32,4 @@ const taskSlice = createSlice({
 export default taskSlice.reducer;
 
 // Export actions for dispatching
-export const { addTask, deleteTask } = taskSlice.actions;
+export const { addTask, deleteTask, editTask } = taskSlice.actions;
